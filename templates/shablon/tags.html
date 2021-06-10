@@ -1,0 +1,39 @@
+{% load static %}
+<html>
+<head>
+<link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+</head>
+<body>
+
+    <div style="
+    align: right;
+    margin: 135px 1300px 0px 1100px;
+    height: 50px;
+    width: 550;
+">
+        <h4>Popular Tags</h4>
+        <p><a style="color:black" href="">perl</a> <a style="color:red" href="">python</a> <a style="color:black" href="">Technopark</a></p>
+         <p><a style="color:red" href="">MySQL</a> <a style="color:green" href="">django</a></p>
+         <p><a style="color:black" href="">Mail.Ru</a> <a style="color:black" href="">Voloshin</a> <a style="color:orange" href="">Firefox</a></p>
+		 {% block content %}
+		 {% for title in tag %}
+		 <p><a style="color:black" href="">{{tag.title}}</a> </p>
+		 {% endfor %}
+		 {%endblock content %}
+		 {% block right %}
+		 <h4 style="
+    margin: 25px 0px;">Best Members</h4>
+	{%for user in rating %}
+		 <ul>
+		 <li><a href="">Mr. Freeman</a></li>
+		 <li><a href="">Dr. House</a></li>
+		 <li><a href="">Bender</a></li>
+		 <li><a href="">Queen Victoria</a></li>
+		 <li><a href="">Kristina Alaya</a></li>
+		 <li><a href="">{{user.username}}</a></li>
+		 </ul>
+		 {% endfor %}
+		 {% endblock right %}
+    </div>
+	</body>
+	</html>

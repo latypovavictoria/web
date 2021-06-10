@@ -1,0 +1,31 @@
+{% load static %}
+<html>
+<head>
+ <meta charset="utf-8">
+<link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+<link href="{% static "index.css" %}" rel="stylesheet">
+<link rel="icon" href="{% static "eye.png" %}" type="image/x-icon">
+</head>
+<body>
+{%for question in question %}
+<div class="question" style="
+    background: whitesmoke;
+    align: left;
+">
+<a href=""><p style="text-align:center">{{question.title}}</p></a><br>
+
+<p><img style="margin:15px;border-radius:20px;border: 2px solid red" src="/static/1.jpg" height="80px" class="pic">{{question.text}}</p>
+ {% include "shablon/strelka.html" %}
+ <p><a href="">answer(3)</a> Tags:<a href="">{{question.tags}}</a> <a href="">bender</a></p>
+	<p style="
+    margin: -60px 450px;
+    color: red;
+">{{question.author}}</p>
+<p style="
+    margin: -50px 570px;
+    color: green;
+">{{question.data}}</p>
+</div>
+{% endfor %}
+</body>
+</html>

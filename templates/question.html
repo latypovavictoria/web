@@ -1,0 +1,50 @@
+{% load static %}
+<html>
+<head>
+ <meta charset="utf-8">
+<link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+<link href="{% static "index.css" %}" rel="stylesheet">
+<link rel="icon" href="{% static "eye.png" %}" type="image/x-icon">
+</head>
+<body>
+{% include "shablon/navbar.html" %}
+<div class="question" style="
+    background: whitesmoke;
+    align: left;
+">
+{% block content %}
+{% for question in question %}
+<a href=""><p style="text-align:center">{{question.title}}</p></a><br>
+
+<p><img style="margin:15px;border-radius:20px;border: 2px solid red" src="/static/1.jpg" height="80px" class="pic">{{question.text}}</p>
+ {% include "shablon/strelkan.html" %}
+ <p><a href="">answer(3)</a> Tags:<a href="">{{question.tags}}</a> <a href="">bender</a></p>
+	<p style="
+    margin: -60px 450px;
+    color: red;
+">{{question.author}}</p>
+<p style="
+    margin: -50px 570px;
+    color: green;
+">{{question.data}}</p>
+{% endfor %}
+{% endblock content %}
+</div>
+<script src="{% static "centrifuge.min.js" %}"></script>
+{% block jscode %}
+{% if request.user.is_authenticated %}
+<script>
+var centrifuge = new Centrifuge('ws://192.168.181.159:8000/connection/websocket');
+
+centrifuge.setToken("{{cent_token}}");
+
+centrifuge.subscribe("{{cent_chan}}", function(message) {
+    console.log(message);
+});
+
+centrifuge.connect();
+</script>
+{% endif %}
+{% endblock %}
+</body>
+</html>

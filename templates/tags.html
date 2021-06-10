@@ -1,0 +1,151 @@
+{% load static %}
+<html lang="en" class="h-100"><head>
+    <meta charset="utf-8">
+    <title>Tags</title>
+<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/index.css" rel="stylesheet">
+<link href="/static/strelka.css" rel="stylesheet">
+<link rel="icon" href="/static/eye.png" type="image/x-icon">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    .pic{
+        float:left;
+        margin:0px 3px;
+    }
+    </style>
+    <link href="sticky-footer-navbar.css" rel="stylesheet">
+  </head>
+  <body class="d-flex flex-column h-100">
+    
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+    <h2> <a class="navbar-brand" href="#">AskTechno</a></h2>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse" style="
+    height: 110px;
+">
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="search" style="width:700px" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit"><a href="{% url "ask" %}" style="color: white">Ask!</a></button>
+        </form>
+    <h6 style="
+    margin: 0px 0px 5px 350px;
+"><a href="">Log out</a><br>
+    <a href="{% url "settings" %}">settings</a></h6>
+		<img src="/static/1.jpg" width="70px" style="
+    border-radius: 90px;
+    margin: 20px;
+    border: 2px solid red;
+">
+<p style="
+    color: red;
+    margin: 2px;
+">Kristina Alaya</p>
+ </div>
+    </div>
+  </nav>
+</header>
+      <div>
+<h4 style="
+    margin: 150px 70px 0px;
+    /* float: left; */
+    display: inline-block;
+">Tags</h4>
+      </div>
+    <div style="
+    align: right;
+    margin: 59px 1300px 0px 1100px;
+    height: 50px;
+    width: 550;
+">
+        <h4>Popular Tags</h4>
+        <p><a style="color:black" href="">perl</a> <a style="color:red" href="">python</a> <a style="color:black" href="">Technopark</a></p>
+         <p><a style="color:red" href="">MySQL</a> <a style="color:green" href="">django</a></p>
+         <p><a style="color:black" href="">Mail.Ru</a> <a style="color:black" href="">Voloshin</a> <a style="color:orange" href="">Firefox</a></p>
+		 <h4 style="
+    margin: 25px 0px;">Best Members</h4>
+		 <ul>
+		 <li><a href="">Mr. Freeman</a></li>
+		 <li><a href="">Dr. House</a></li>
+		 <li><a href="">Bender</a></li>
+		 <li><a href="">Queen Victoria</a></li>
+		 <li><a href="">Kristina Alaya</a></li>
+		 </ul>
+    </div>
+	{% block content %}
+{% for question in index %}
+<div class="question" style="
+    background: whitesmoke;
+    align: left;
+">
+<a href=""><p style="text-align:center">{{question.title}}</p></a><br>
+
+<p><img style="margin:15px;border-radius:20px;border: 2px solid red" src="/static/1.jpg" height="80px" class="pic">{{question.text}}</p>
+ {% include "shablon/strelka.html" %}
+ <p><a href="">answer(3)</a> Tags:<a href="">{{question.tags}}</a> <a href="">bender</a></p>
+	<p style="
+    margin: -60px 450px;
+    color: red;
+">{{question.author}}</p>
+<p style="
+    margin: -50px 570px;
+    color: green;
+">{{question.date}}</p>
+</div>
+{% endfor %}
+{% endblock content %}
+<div class="question1" style="
+    background: whitesmoke;
+">
+<a href=""><p style="text-align:center">"How to create a model of plane?"</p></a><br>
+
+<p><img style="margin:15px;border-radius:20px;border: 2px solid red" src="/static/3.jpg" height="80px" width="80px" class="pic">I began to do my project for university, but something works wrong</p>
+{% include "shablon/strelka.html" %}
+<p><a href="">answer(3)</a> Tags:<a href="">black-jack</a> <a href="">bender</a></p>
+		<p style="
+    margin: -50px 450px;
+    color: red;
+">Jack</p>
+<p style="
+    margin: -40px 570px;
+    color: green;
+">07.03.2021</p>
+</div>
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="
+    margin: 30px 70px;
+">
+  <div class="btn-group me-2" role="group" aria-label="First group">
+    <button type="button" class="btn btn-primary">1</button>
+    <button type="button" class="btn btn-primary">2</button>
+    <button type="button" class="btn btn-primary">3</button>
+    <button type="button" class="btn btn-primary">4</button>
+  </div>
+  <div class="btn-group me-2" role="group" aria-label="Second group">
+    <button type="button" class="btn btn-secondary">5</button>
+    <button type="button" class="btn btn-secondary">6</button>
+    <button type="button" class="btn btn-secondary">7</button>
+  </div>
+</div>
+<footer class="foo">
+<hr style="
+    margin: 0px 0px;
+">
+<p style="text-align:center;color:black;margin: 0.5px;">@Developed by APO-13</p>
+</footer>
+</body></html>

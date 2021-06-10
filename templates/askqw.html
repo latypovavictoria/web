@@ -1,0 +1,161 @@
+{% load static %}
+{% load bootstrap4 %}
+<html lang="en" class="h-100"><head>
+    <meta charset="utf-8">
+    <title>Ask</title>
+<link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+<link href="{% static "askqw.css" %}" rel="stylesheet">
+<link href="{% static "strelka.css" %}" rel="stylesheet">
+<link rel="icon" href="{% static "eye.png" %}" type="image/x-icon">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    .pic{
+        float:left;
+        margin:0px 3px;
+    }
+    </style>
+    <link href="sticky-footer-navbar.css" rel="stylesheet">
+  </head>
+  <body class="d-flex flex-column h-100">
+    
+{% include "shablon/navbar.html" %}
+<div>
+<h4 style="
+    margin: 15px 70px 0px;
+    display: inline-block;
+    color: white;
+">New Question</h4><p style="
+    margin: -25px 250px;
+"></p>
+      </div>
+    {% include "shablon/tags.html" %}
+	<div class="question" style="
+">
+<a href=""><p style="text-align:center">"How to build a moon park?"</p></a><br>
+
+<p><img style="margin:15px;border-radius:20px;border: 2px solid red" src="{% static "1.jpg" %}" height="80px" class="pic">Guys, I have troble with a moon park! Can not find in black-jack.The Moonpark Taşdelen project, which will be implemented with the joint ventures of Albayrak Beton, Etna İnşaat and Has İnşaat, has a construction area of &#8203;&#8203;50 thousand square meters. Moonpark Taşdelen project has different apartment options from 2 + 1 to 4 + 1. The sizes of the residences in the project are designed to vary between 64.4 square meters and 226 square meters.</p>
+<div class="strelka">
+<p>7
+<button style="
+    height: 18px;
+    width: 36px;
+    margin: -25px 42px 0px;
+"><img src="/static/strelka1.png" style="
+    height: 13px;
+    width: 21px;
+    margin: -1px;
+"></button>
+<button style="
+    margin: -7px 42px 0px;
+    height: 18px;
+    width: 36px;
+    "><img src="/static/strelka2.png" style="
+    margin: 0 0 1;
+    height: 13px;
+    width: 21px;
+"></button>
+	</p>
+</div>
+<p style="
+    margin: 3px 110px;
+"> Tags:<a href="">black-jack</a> <a href="">bender</a></p>
+<p style="
+    margin: -30px 300px;
+    color: red;
+">Kristina Alaya</p>
+<p style="
+    margin: 0px 800px;
+    color: green;
+">07.03.2021</p>
+    <hr style="
+    margin: 30px 7px;
+    color: black;
+">
+</div>
+	{% block content %}
+{% for answer in askqw %}
+<div class="question1" style="
+    background: whitesmoke;
+">
+
+<p style="
+    margin: 10px 0px 2px 5px;
+"><img style="margin:15px;border-radius:20px;border: 2px solid red" src="{% static "3.jpg" %}" height="80px" width="80px" class="pic">{{answer.text}}</p>
+{% include "shablon/strelka.html" %}
+    <form method="POST" action="" style="
+">
+        <p style="
+    margin: -35px 220px;
+    color: green;
+"><input type="checkbox" name="option" value="a1">Correct!</p>
+        <p style="margin: 8px 300px;"><input type="submit" value="Submit" style="
+    color: white;
+    background: green;
+    border: 2px solid black;
+"></p>
+    </form>
+	<p style="
+    margin: 0px 135px;
+    color: red;
+">{{answer.author}}</p>
+<p style="
+    margin: -20px 10px 5px 590px;
+    color: green;
+">{{answer.date}}</p>
+</div>
+{% endfor %}
+{% endblock content %}
+<div style="
+    margin: 20px 70px;
+    border: 2px solid black;
+    background: whitesmoke;
+    border-radius: 20px;
+    height: 400px;
+    width: 700px;
+">
+<form class="form mt-5" action="/register/" method="POST" style="width: 600; margin: 0px 45px;">
+	{% csrf_token %}
+	{% bootstrap_form form %}
+	{% buttons %}
+	<button type="submit" class="btn btn-primary">
+	Answer
+	</button>
+	{% endbuttons %}
+<br>
+  </form>
+</div>
+<div class="pagination">
+
+    {% if answers.has_previous %}
+        <a href="?page={{ answers.previous_page_number }}">←</a>
+    {% endif %}
+
+    {% for num in answers.paginator.page_range %}
+        {% if num == articles.number %}
+            <span class="current"><b>{{ num }}</b></span>
+        {% else %}
+            <a href="?page={{ num }}"> {{ num }}</a>
+        {% endif %} 
+    {% endfor %}
+
+    {% if answer_list.has_next %}
+        <a href="?page={{ answer_list.next_page_number }}">→</a>
+    {% endif %}
+
+</div>
+{% include "shablon/button.html" %}
+{% include shablon/footer.html" %}
+</body></html>
